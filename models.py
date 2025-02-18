@@ -25,3 +25,11 @@ class Group(Base):
     name: Mapped[str] = mapped_column(String(50))
     students: Mapped[Student] = relationship("Student", back_populates="group_id")
     subjects: Mapped[Subject] = relationship("Subject", secondary="group_subjects")
+
+
+class Teacher(Base):
+    __tablename__ = "teachers"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(50))
+    email: Mapped[str] = mapped_column(String(50))
+    subjects: Mapped[Subject] = relationship("Subject", back_populates="teachers")
