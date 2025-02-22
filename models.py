@@ -13,7 +13,7 @@ class Student(Base):
     group_id: Mapped[int] = mapped_column(Integer, ForeignKey("groups.id"))
 
     group: Mapped["Group"] = relationship("Group", back_populates="students")
-    marks: Mapped[list["Marks"]] = relationship("Marks", back_populates="students")
+    marks: Mapped[list["Mark"]] = relationship("Marks", back_populates="students")
 
 
 class Subject(Base):
@@ -23,7 +23,7 @@ class Subject(Base):
     teacher_id: Mapped[int] = mapped_column(Integer, ForeignKey("teachers.id"))
 
     teacher: Mapped["Teacher"] = relationship("Teacher", back_populates="subjects")
-    marks: Mapped[list["Marks"]] = relationship("Marks", back_populates="subject")
+    marks: Mapped[list["Mark"]] = relationship("Marks", back_populates="subjects")
 
 
 class Group(Base):
@@ -44,7 +44,7 @@ class Teacher(Base):
     )
 
 
-class Marks(Base):
+class Mark(Base):
     __tablename__ = "marks"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     mark: Mapped[int] = mapped_column(Integer)
